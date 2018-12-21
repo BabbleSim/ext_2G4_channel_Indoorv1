@@ -1,0 +1,7 @@
+#<Txnbr> <Rxnbr> : {<distance>|"<distance_file_name>"}
+1 0 : "test/trial_case_2.1_0.dist"
+2 0 : "test/trial_case_2.2_0.dist"
+2 1 : "test/trial_case_2.2_1.dist"
+#3 0 : "test/trial_case_2.3_0.dist" #commented out for testing
+3 1 : "test/trial_case_2.3_1.dist"
+3 2 : 1

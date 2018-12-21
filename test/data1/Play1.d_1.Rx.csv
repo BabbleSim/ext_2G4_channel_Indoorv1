@@ -1,0 +1,1 @@
+Rx_Start_TimeStamp,ScanDuration,PhyAddress,ModulationType,CenterFreq,AntennaGain,SyncThreshold,HeaderThreshold,PreambleEtAddressDuration,HeaderDuration,BitsPerMicros,Abort_p.AbortTimeStamp,Abort_p.ReCheckNextTime,MatchedTxnbr,biterrors,TimeSyncEnd,TimeHeaderEnd,TimePayloadEnd,Rx_TimeStamp,Status,RSSI_meas_avg,RSSI_meas_min,RSSI_meas_max,PacketSize,Packet

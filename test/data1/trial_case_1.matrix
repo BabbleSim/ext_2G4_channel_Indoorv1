@@ -1,0 +1,7 @@
+#<Txnbr> <Rxnbr> : {<distance>|"<distance_file_name>"}
+1 0 : "../components/ext_2G4_channel_Indoorv1/test/data1/trial_case_1.1_0.dist"
+2 0 : "../components/ext_2G4_channel_Indoorv1/test/data1/trial_case_1.2_0.dist"
+2 1 : "../components/ext_2G4_channel_Indoorv1/test/data1/trial_case_1.2_1.dist"
+3 0 : "../components/ext_2G4_channel_Indoorv1/test/data1/trial_case_1.3_0.dist"
+3 1 : "../components/ext_2G4_channel_Indoorv1/test/data1/trial_case_1.3_1.dist"
+3 2 : 1.500000e-001

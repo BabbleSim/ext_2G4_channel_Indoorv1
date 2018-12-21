@@ -1,0 +1,4 @@
+1 0 : "../components/ext_2G4_channel_Indoorv1/test/data2/path1_0.txt"
+2 0 : "../components/ext_2G4_channel_Indoorv1/test/data2/path2_0.txt"
+4 0 : 20 #an inexistant path
+#path 2 1 is left to default

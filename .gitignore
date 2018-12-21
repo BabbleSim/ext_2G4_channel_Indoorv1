@@ -1,0 +1,15 @@
+*.o
+*.a
+*.so
+*.d
+*.asv
+*.Tsymbols
+*.gcda
+*.gcno
+*~
+~*.~*
+.project
+.cproject
+.pydevproject
+.settings/*
+octave-workspace
