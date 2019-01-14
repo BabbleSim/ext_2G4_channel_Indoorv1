@@ -577,8 +577,9 @@ void channel_delete(){
 
 //#define TESTPL
 #ifdef TESTFADE
-// gcc -g -DTESTFADE *.c ../../../lib/libUtilv1.a ../../../lib/libRandv2.a -o channel_test -lfftw3 -lm -std=c99 -D_XOPEN_SOURCE=700 \
+/* gcc -g -DTESTFADE *.c ../../../lib/libUtilv1.a ../../../lib/libRandv2.a -o channel_test -lfftw3 -lm -std=c99 -D_XOPEN_SOURCE=700 \
    -I ../../libUtilv1/src/ -I ../../libPhyComv1/src/ -I ../../ext_2G4_libPhyComv1/src/ -I ../../libRandv2/src/ -I ../../ext_2G4_phy_v1/src/
+*/
 //./channel_test -args > test/params.m
 
 /*
@@ -672,8 +673,9 @@ int main(int argc, char**argv) {
 
 
 #ifdef TESTPL
-//gcc -g -DTESTPL *.c ../../../lib/libUtilv1.a ../../../lib/libRandv2.a -o channel_pl_test -lfftw3 -lm -std=c99 -D_XOPEN_SOURCE=700 \
+/* gcc -g -DTESTPL *.c ../../../lib/libUtilv1.a ../../../lib/libRandv2.a -o channel_pl_test -lfftw3 -lm -std=c99 -D_XOPEN_SOURCE=700 \
  -I ../../libUtilv1/src/ -I ../../libPhyComv1/src/ -I ../../ext_2G4_libPhyComv1/src/ -I ../../libRandv2/src/ -I ../../ext_2G4_phy_v1/src/
+*/
 //valgrind ./channel_pl_test -at=50  -atxtra=-10.1 #test with only constant
 /*
 valgrind  --leak-check=full ./channel_pl_test -at=50  -dist=test/trial_case_2.matrix #test with file with all cases
