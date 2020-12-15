@@ -348,6 +348,7 @@ static double CalculateAveFade(double complex *ChResp, p2G4_modulation_t Modulat
   switch ( ModulationType ) {
     case P2G4_MOD_BLE:
       BW = 1*samplesPerMHz; break;
+    case P2G4_MOD_BLE2M:
     case P2G4_MOD_PROP2M:
       BW = 2*samplesPerMHz; break;
     case P2G4_MOD_PROP3M:
