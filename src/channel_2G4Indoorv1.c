@@ -32,6 +32,10 @@
  *     the included document for documentation on the model
  *
  * The interfacing functions to the Phy are also implemented in this file
+ *
+ *
+ * Note: For CodedPhy with S=8, in reality the ISI would be smaller in the 2nd bit, but we do not
+ *       (yet) account for it here.
  */
 
 //Constants for the fading calculation:
@@ -347,6 +351,7 @@ static double CalculateAveFade(double complex *ChResp, p2G4_modulation_t Modulat
 
   switch ( ModulationType ) {
     case P2G4_MOD_BLE:
+    case P2G4_MOD_BLE_CODED:
     case P2G4_MOD_154_250K_DSS: //Provisionally let's treat 15.4 like 1Mbps BLE
       BW = 1*samplesPerMHz; break;
     case P2G4_MOD_BLE2M:
