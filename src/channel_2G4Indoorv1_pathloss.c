@@ -136,7 +136,7 @@ static double PathLossFromDistance(double distance){
   }
 
   PL = PL_status.distance_exp*10.0*log10(distance) + 39.60422483423212045872;
-  //Ltotal = 20*log10f + N*log10d  – 28
+  //Ltotal = 20*log10f + N*log10d - 28
   //20*log10(2.4e3) - 28 = 39.60422483423212045872
 
   if ( PL < 20.0 ){
