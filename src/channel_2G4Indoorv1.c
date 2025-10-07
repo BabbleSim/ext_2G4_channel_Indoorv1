@@ -346,7 +346,7 @@ static double D;
  * C_Freq_t       CenterFreq    :From 0.0 to 80.0 in which frequency is the transmission centered
  *                     format 8.8 in MHz, offset relative to 2400 (can be negative for blockers < 2400 )
  */
-static double CalculateAveFade(double complex *ChResp, p2G4_modulation_t ModulationType, p2G4_freq_t  CenterFreq){
+static double CalculateAveFade(double complex *ChResp, p2G4_modulation_t ModulationType, p2G4_freq2_t CenterFreq){
   ///<This channel frequency response
 
   switch ( ModulationType ) {
@@ -388,11 +388,12 @@ static double CalculateAveFade(double complex *ChResp, p2G4_modulation_t Modulat
       bs_trace_error_line("Unknown modulation type %u\n", ModulationType);
       break;
   }
-
-  ChRespCenter = ( ( CenterFreq >> ( P2G4_freq_FRACB - Log2SamplesPerMHz - 1) ) + 1 ) >> 1; //Round CenterFreq to nearest tap of ChResp
-  // P2G4_freq_FRACB is the number of fractional bits of CenterFreq
-  // ( P2G4_freq_FRACB - Log2SamplesPerMHz ) : is the difference in number of fractional bits of the ChRespCenter and CenterFreq
-
+  {
+    int center_f = ( ( CenterFreq >> ( P2G4_freq2_FRACB - Log2SamplesPerMHz - 1) ) + 1 ) >> 1;  //Round CenterFreq to nearest tap of ChResp
+    ChRespCenter = center_f - (2400 << Log2SamplesPerMHz); //Move 2400MHz to 0
+    // P2G4_freq2_FRACB is the number of fractional bits of CenterFreq
+    // ( P2G4_freq2_FRACB - Log2SamplesPerMHz ) : is the difference in number of fractional bits of the ChRespCenter and CenterFreq
+  }
 
   {
     /*
@@ -408,10 +409,17 @@ static double CalculateAveFade(double complex *ChResp, p2G4_modulation_t Modulat
     LastIndex = BS_MAX(FirstIndex,LastIndex); //for the BW = 0 case
 
     if ( FirstIndex < -Nsamples_ChannelAnalysis ) {
-      bs_trace_error_line("No transmitter can be lower than 2240MHz (really under 2360MHz is not a good idea already)\n");
+      bs_trace_error_line("This channel does not support transmitters lower than 2240MHz (really under 2360MHz is not a good idea already)\n");
     }
     if ( LastIndex >= Nsamples_ChannelAnalysis ) {
-      bs_trace_error_line("No transmitter can be higher than 2560MHz (really over 2520MHz is not a good idea already)\n");
+      static bool warned;
+      if (!warned) {
+        bs_trace_warning_line("This channel does not yet support transmitters higher than 2560MHz (really over 2520MHz is not a good idea already). "
+                              "This message will only be shown once\n");
+        warned = true;
+      }
+      D = 1e-20;   //By now just 200dB att. for out of band transmissions
+      return -200;
     }
     //The response of the channel is periodic every 160MHz, so we wrap it around and assume that the negative frequencies response is at 160MHz
     for ( index = FirstIndex ; (index < 0) && (index <= LastIndex) ; index ++ ){
@@ -621,7 +629,7 @@ int main(int argc, char**argv) {
 //    uint tx_used[3] = {0,1,0};     uint txnbr = 1;     uint rxnbr = 2;
 
     tx_el_t Tx_list[number_devices];
-    Tx_list[2].tx_s.radio_params.center_freq = 0;
+    Tx_list[2].tx_s.radio_params.center_freq = p2G4_freq2_from_d(2400);
     Tx_list[2].tx_s.radio_params.modulation = P2G4_MOD_CWINTER;
     uint rx_i, tx_i;
     double Atenuation[number_devices];
